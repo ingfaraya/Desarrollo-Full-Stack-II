@@ -1,13 +1,23 @@
-/* styles.css */
+:root {
+    --main-bg-color: #f0f0f0;
+    --main-text-color: #333;
+    --header-bg-color: #333;
+    --header-text-color: #fff;
+    --nav-bg-color: #444;
+    --nav-text-color: #fff;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
 }
 
 header {
-    background-color: #333;
-    color: white;
+    background-color: var(--header-bg-color);
+    color: var(--header-text-color);
     padding: 1em;
     text-align: center;
 }
@@ -16,17 +26,25 @@ nav ul {
     list-style-type: none;
     padding: 0;
     text-align: center;
-    background-color: #444;
+    background-color: var(--nav-bg-color);
 }
 
 nav ul li {
-    display: inline;
+    display: inline-block;
     margin: 0 1em;
 }
 
 nav ul li a {
-    color: white;
+    color: var(--nav-text-color);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a .icon {
+    width: 40px;  /* Ajusta el tamaño del icono según sea necesario */
+    height: auto;
+    margin-right: 10px;  /* Espacio entre el icono y el texto */
 }
 
 main {
@@ -35,8 +53,8 @@ main {
 }
 
 footer {
-    background-color: #333;
-    color: white;
+    background-color: var(--header-bg-color);
+    color: var(--header-text-color);
     text-align: center;
     padding: 1em;
     position: fixed;
@@ -68,4 +86,22 @@ footer {
     .producto {
         width: calc(100% - 2em);
     }
+}
+
+/* Animaciones CSS */
+h1 {
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.producto img {
+    transition: transform 0.3s ease;
+}
+
+.producto img:hover {
+    transform: scale(1.1);
 }
