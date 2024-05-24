@@ -1,13 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('registroForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        if (validarFormulario()) {
-            alert('Formulario enviado correctamente.');
-            // Aquí puedes agregar el código para enviar el formulario
-        }
-    });
-});
-
 function validarFormulario() {
     const nombreCompleto = document.getElementById('nombreCompleto').value.trim();
     const nombreUsuario = document.getElementById('nombreUsuario').value.trim();
