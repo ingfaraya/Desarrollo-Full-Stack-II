@@ -1,54 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Función para establecer la sesión del usuario
     const setSession = (user) => {
         localStorage.setItem('loggedInUser', JSON.stringify(user));
     };
 
-    // Función para obtener la sesión del usuario
     const getSession = () => {
         return JSON.parse(localStorage.getItem('loggedInUser'));
     };
 
-    // Función para cerrar sesión
     const logout = () => {
         localStorage.removeItem('loggedInUser');
-        window.location.href = 'index.html';
+        window.location.href = '../tienda/index.html';
     };
 
-    // Registro
-    const registroForm = document.getElementById('registroForm');
-    if (registroForm) {
-        registroForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const nombreCompleto = document.getElementById('nombreCompleto').value.trim();
-            const nombreUsuario = document.getElementById('nombreUsuario').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const confirmPassword = document.getElementById('confirmPassword').value.trim();
-            const fechaNacimiento = document.getElementById('fechaNacimiento').value;
-            const direccion = document.getElementById('direccion').value.trim();
-
-            if (password !== confirmPassword) {
-                alert('Las contraseñas no coinciden.');
-                return;
-            }
-
-            const user = {
-                nombreCompleto,
-                nombreUsuario,
-                email,
-                password,
-                fechaNacimiento,
-                direccion
-            };
-
-            localStorage.setItem(nombreUsuario, JSON.stringify(user));
-            alert('Registro exitoso. Ahora puedes iniciar sesión.');
-            window.location.href = 'login.html';
-        });
-    }
-
-    // Login
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', function(event) {
@@ -61,14 +24,13 @@ document.addEventListener('DOMContentLoaded', function() {
             if (user && user.password === password) {
                 alert('Login exitoso. Bienvenido ' + user.nombreCompleto + '!');
                 setSession(user);
-                window.location.href = 'index.html';
+                window.location.href = user.role === 'admin' ? 'admin.html' : '../tienda/index.html';
             } else {
                 alert('Nombre de usuario o contraseña incorrectos.');
             }
         });
     }
 
-    // Manejo del estado de sesión
     const sessionUser = getSession();
     if (sessionUser) {
         const loginLink = document.querySelector('a[href="login.html"]');
