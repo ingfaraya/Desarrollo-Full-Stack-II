@@ -1,46 +1,67 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (!loggedInUser) {
+        alert('Debe iniciar sesión para agregar productos al carrito.');
+        return;
+    }
+
+    const cartKey = `cart_${loggedInUser.nombreUsuario}`;
+    const cart = JSON.parse(localStorage.getItem(cartKey)) || [];
     const cartCount = document.getElementById('cartCount');
-    const cartItems = document.getElementById('cartItems');
-    const cartTotal = document.getElementById('cartTotal');
-    const cartTotalDiscounted = document.getElementById('cartTotalDiscounted');
+    const cartLink = document.getElementById('cartLink');
 
-    const updateCart = () => {
-        const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
-        cartCount.textContent = currentCart.length;
-        cartItems.innerHTML = '';
+    const updateCartCount = () => {
+        cartCount.textContent = cart.length;
+    };
+
+    updateCartCount();
+
+    const updateCartModal = () => {
+        const cartItemsContainer = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        cartItemsContainer.innerHTML = '';
+
         let total = 0;
-        let totalDiscounted = 0;
 
-        currentCart.forEach(item => {
-            const itemTotal = item.descuento ? parseFloat(item.descuento) : parseFloat(item.precio);
-            total += parseFloat(item.precio);
-            totalDiscounted += itemTotal;
+        cart.forEach(item => {
+            const itemTotal = parseFloat(item.precio) - (item.descuento ? parseFloat(item.descuento) : 0);
+            total += itemTotal;
 
-            const listItem = `
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6>${item.nombre}</h6>
-                        <p>Precio: $${parseFloat(item.precio).toFixed(2)}</p>
-                        ${item.descuento ? `<p>Descuento: $${parseFloat(item.descuento).toFixed(2)}</p>` : ''}
-                    </div>
-                    <span>$${itemTotal.toFixed(2)}</span>
-                </li>
+            const cartItem = document.createElement('div');
+            cartItem.className = 'row mb-3';
+            cartItem.innerHTML = `
+                <div class="col-4">
+                    <img src="${item.imagen}" class="img-fluid cart-img" alt="${item.nombre}">
+                </div>
+                <div class="col-8">
+                    <h5>${item.nombre}</h5>
+                    <p>Precio: $${item.precio}</p>
+                    <p>Descuento: ${item.descuento ? '$' + item.descuento : 'No'}</p>
+                    <p>Total: $${itemTotal.toFixed(2)}</p>
+                </div>
             `;
-            cartItems.insertAdjacentHTML('beforeend', listItem);
+            cartItemsContainer.appendChild(cartItem);
         });
 
-        cartTotal.textContent = `$${total.toFixed(2)}`;
-        cartTotalDiscounted.textContent = `$${totalDiscounted.toFixed(2)}`;
+        cartTotal.textContent = total.toFixed(2);
     };
 
-    const addToCart = (producto) => {
-        const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
-        currentCart.push(producto);
-        localStorage.setItem('cart', JSON.stringify(currentCart));
-        updateCart();
+    window.addToCart = function(productName) {
+        const productos = JSON.parse(localStorage.getItem('productos')) || [];
+        const product = productos.find(p => p.nombre === productName);
+        if (product) {
+            cart.push(product);
+            localStorage.setItem(cartKey, JSON.stringify(cart));
+            updateCartCount();
+            updateCartModal();
+            const addToCartModal = new bootstrap.Modal(document.getElementById('addToCartModal'));
+            addToCartModal.show();
+        } else {
+            alert('Producto no encontrado');
+        }
     };
 
-    window.addToCart = addToCart;
-
-    updateCart();
+    cartLink.addEventListener('click', function() {
+        updateCartModal();
+    });
 });

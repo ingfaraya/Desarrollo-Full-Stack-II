@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administración - Juegos de Mesa XYZ</title>
+    <title>Administración - Juegos de Mesa XYZ</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/admin.css">
 </head>
@@ -13,10 +13,10 @@
         <div class="bg-dark border-right" id="sidebar-wrapper">
             <div class="sidebar-heading text-white">Administración</div>
             <div class="list-group list-group-flush">
-                <a href="admin.html" class="list-group-item list-group-item-action bg-dark text-white">Inicio</a>
-                <a href="cuentas.html" class="list-group-item list-group-item-action bg-dark text-white">Gestionar Cuentas</a>
-                <a href="productos.html" class="list-group-item list-group-item-action bg-dark text-white">Gestionar Productos</a>
-                <a href="roles.html" class="list-group-item list-group-item-action bg-dark text-white">Gestionar Roles</a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white" onclick="showSection('inicio')">Inicio</a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white" onclick="showSection('productos')">Gestionar Productos</a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white" onclick="showSection('cuentas')">Gestionar Cuentas</a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white" onclick="showSection('roles')">Gestionar Roles</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -38,8 +38,28 @@
             </nav>
 
             <div class="container-fluid">
-                <h1 class="mt-4">Bienvenido al Panel de Administración</h1>
-                <p>Aquí puedes gestionar los productos, usuarios y más.</p>
+                <div id="inicio" class="admin-section">
+                    <h2 class="mt-4">Bienvenido, Administrador</h2>
+                    <p>Use el menú de la izquierda para gestionar los productos, cuentas y roles.</p>
+                </div>
+
+                <div id="productos" class="admin-section d-none">
+                    <h2 class="mt-4">Gestionar Productos</h2>
+                    <button class="btn btn-success mb-4" onclick="showProductModal()">Crear Producto</button>
+                    <div id="productosContainer"></div>
+                </div>
+
+                <div id="cuentas" class="admin-section d-none">
+                    <h2 class="mt-4">Gestionar Cuentas</h2>
+                    <button class="btn btn-success mb-4" onclick="showCuentaModal()">Crear Cuenta</button>
+                    <div id="cuentasContainer"></div>
+                </div>
+
+                <div id="roles" class="admin-section d-none">
+                    <h2 class="mt-4">Gestionar Roles</h2>
+                    <button class="btn btn-success mb-4" onclick="showRoleModal()">Crear Rol</button>
+                    <div id="rolesContainer"></div>
+                </div>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
@@ -47,10 +67,124 @@
     </div>
     <!-- /#wrapper -->
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="js/auth.js"></script>
+    <!-- Modal de Productos -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">Crear Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="manageProductoForm">
+                        <div class="mb-3">
+                            <label for="productoNombre" class="form-label">Nombre del Producto</label>
+                            <input type="text" class="form-control" id="productoNombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productoDescripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="productoDescripcion" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productoPrecio" class="form-label">Precio</label>
+                            <input type="number" class="form-control" id="productoPrecio" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productoDescuento" class="form-label">Descuento</label>
+                            <input type="number" class="form-control" id="productoDescuento">
+                        </div>
+                        <div class="mb-3">
+                            <label for="productoCategoria" class="form-label">Categoría</label>
+                            <select class="form-control" id="productoCategoria" required>
+                                <option value="strategy">Juegos de Estrategia</option>
+                                <option value="family">Juegos Familiares</option>
+                                <option value="party">Juegos de Fiesta</option>
+                                <option value="kids">Juegos Infantiles</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productoImagen" class="form-label">URL de la Imagen</label>
+                            <input type="url" class="form-control" id="productoImagen" required>
+                        </div>
+                        <input type="hidden" id="editProductoIndex">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Cuentas -->
+    <div class="modal fade" id="cuentaModal" tabindex="-1" aria-labelledby="cuentaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cuentaModalLabel">Crear Cuenta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="manageCuentaForm">
+                        <div class="mb-3">
+                            <label for="cuentaNombre" class="form-label">Nombre Completo</label>
+                            <input type="text" class="form-control" id="cuentaNombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cuentaUsuario" class="form-label">Nombre de Usuario</label>
+                            <input type="text" class="form-control" id="cuentaUsuario" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cuentaEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="cuentaEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cuentaPassword" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="cuentaPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cuentaFechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" id="cuentaFechaNacimiento" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cuentaDireccion" class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="cuentaDireccion" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cuentaRol" class="form-label">Rol</label>
+                            <select class="form-control" id="cuentaRol" required>
+                                <!-- Roles se llenarán aquí -->
+                            </select>
+                        </div>
+                        <input type="hidden" id="editCuentaIndex">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Roles -->
+    <div class="modal fade" id="roleModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="roleModalLabel">Crear Rol</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="manageRoleForm">
+                        <div class="mb-3">
+                            <label for="roleNombre" class="form-label">Nombre del Rol</label>
+                            <input type="text" class="form-control" id="roleNombre" required>
+                        </div>
+                        <input type="hidden" id="editRoleIndex">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/admin.js"></script>
 </body>
 </html>
