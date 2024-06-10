@@ -1,0 +1,40 @@
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">Registro</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+            <div class="mb-3">
+              <label for="registerFullName" class="form-label">Nombre Completo</label>
+              <input type="text" class="form-control" id="registerFullName" required [(ngModel)]="fullName" name="fullName">
+            </div>
+            <div class="mb-3">
+              <label for="registerUsername" class="form-label">Nombre de Usuario</label>
+              <input type="text" class="form-control" id="registerUsername" required [(ngModel)]="username" name="username">
+            </div>
+            <div class="mb-3">
+              <label for="registerEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="registerEmail" required [(ngModel)]="email" name="email">
+            </div>
+            <div class="mb-3">
+              <label for="registerPassword" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="registerPassword" required [(ngModel)]="password" name="password">
+            </div>
+            <div class="mb-3">
+              <label for="registerDOB" class="form-label">Fecha de Nacimiento</label>
+              <input type="date" class="form-control" id="registerDOB" required [(ngModel)]="dob" name="dob">
+            </div>
+            <div class="mb-3">
+              <label for="registerAddress" class="form-label">Dirección</label>
+              <input type="text" class="form-control" id="registerAddress" required [(ngModel)]="address" name="address">
+            </div>
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
