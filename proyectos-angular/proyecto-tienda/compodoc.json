@@ -1,0 +1,20 @@
+{
+    "title": "Documentación de mi proyecto Angular",
+    "src": "./src",
+    "output": "./documentation",
+    "exclude": ["**/*.spec.ts", "**/node_modules/**"],
+    "theme": "default",
+    "disableSourceCode": false,
+    "disableGraph": false,
+    "disableCoverage": false,
+    "disablePrivate": false,
+    "disableInternal": false,
+    "disableLifeCycleHooks": false,
+    "disableRoutesGraph": false,
+    "disableSearch": false,
+    "disableDependencies": false,
+    "disableDomTree": false,
+    "disableDomTreeExplorer": false,
+    "hideGenerator": false
+  }
+  
