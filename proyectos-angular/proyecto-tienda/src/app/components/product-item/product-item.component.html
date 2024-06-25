@@ -1,0 +1,11 @@
+<!-- src/app/components/product-item/product-item.component.html -->
+<div class="card">
+  <img [src]="product.image" class="card-img-top catalog-img" alt="{{ product.name }}">
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p class="card-text">{{ product.description }}</p>
+    <p class="card-text">Precio: {{ product.price | currency }}</p>
+    <p class="card-text">Descuento: {{ product.discount }}%</p>
+    <button class="btn btn-primary" (click)="addToCart()">Agregar al Carrito</button>
+  </div>
+</div>

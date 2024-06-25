@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../services/cart.service';
-import { Product } from '../services/product.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { CartService } from './cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,15 +8,21 @@ import { Product } from '../services/product.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartItems: Product[] = [];
+  cartItems = [];
+  total = 0;
 
-  constructor(private cartService: CartService) {}
+  constructor(public activeModal: NgbActiveModal, private cartService: CartService) {}
 
-  ngOnInit(): void {
-    this.cartItems = this.cartService.getCart();
+  ngOnInit() {
+    this.cartItems = this.cartService.getCartItems();
+    this.total = this.cartService.getTotal();
   }
 
-  getTotal(): number {
-    return this.cartService.getTotal();
+  close() {
+    this.activeModal.dismiss();
+  }
+
+  checkout() {
+    // Lógica de pago y finalizar compra
   }
 }

@@ -1,0 +1,50 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo de la barra de navegación */
+.navbar .nav-link {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .nav-link .material-icons {
+    margin-right: 5px;
+}
+
+/* Estilo del carrito de compras */
+.navbar .nav-link .material-icons {
+    font-size: 24px;
+}
+
+#cartCount {
+    font-size: 12px;
+}
+
+/* Estilo de las tarjetas de producto */
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card .btn {
+    margin-top: 10px;
+}
+
+/* Tamaño de las imágenes en el catálogo */
+.card-img-top.catalog-img {
+    width: 100%;
+    height: 5cm;
+    object-fit: cover;
+}
+
+/* Tamaño de las imágenes en el carrito */
+.img-fluid.cart-img {
+    width: 3cm;
+    height: 3cm;
+    object-fit: cover;
+}

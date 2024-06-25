@@ -1,31 +1,48 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { ProductListComponent } from './product-list/product-list.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { HomeComponent } from './home/home.component';
+import { CategoryComponent } from './category/category.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { CartComponent } from './cart/cart.component';
-import { FormsModule } from '@angular/forms';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AuthService } from './auth/auth.service';
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
+    CategoryComponent,
+    ProductCardComponent,
+    ProductDetailComponent,
+    CartComponent,
     LoginComponent,
     RegisterComponent,
-    CartComponent
+    AdminLoginComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HeaderComponent,
-    FooterComponent
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgbModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

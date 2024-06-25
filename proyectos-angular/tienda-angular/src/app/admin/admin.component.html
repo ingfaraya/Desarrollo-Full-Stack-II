@@ -1,16 +1,36 @@
-<div class="container mt-4">
-    <h2>Panel de Administración</h2>
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/admin/manage-products">Gestionar Productos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/admin/manage-accounts">Gestionar Cuentas</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/admin/manage-roles">Gestionar Roles</a>
-      </li>
-    </ul>
-    <router-outlet></router-outlet>
+<!-- src/app/admin/admin.component.html -->
+<div class="d-flex" id="wrapper">
+  <!-- Sidebar -->
+  <div class="bg-dark border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading text-white">Administración</div>
+    <div class="list-group list-group-flush">
+      <a routerLink="/admin" class="list-group-item list-group-item-action bg-dark text-white">Inicio</a>
+      <a routerLink="/admin/users" class="list-group-item list-group-item-action bg-dark text-white">Gestionar Cuentas</a>
+      <a routerLink="/admin/products" class="list-group-item list-group-item-action bg-dark text-white">Gestionar Productos</a>
+      <a routerLink="/admin/roles" class="list-group-item list-group-item-action bg-dark text-white">Gestionar Roles</a>
+    </div>
   </div>
-  
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+      <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Tienda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="logout">Cerrar Sesión</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+</div>

@@ -1,0 +1,20 @@
+[
+  {
+    "username": "admin",
+    "password": "admin123",
+    "fullName": "Admin User",
+    "email": "admin@example.com",
+    "dob": "1980-01-01",
+    "address": "123 Admin St",
+    "role": "admin"
+  },
+  {
+    "username": "testuser",
+    "password": "test123",
+    "fullName": "Test User",
+    "email": "testuser@example.com",
+    "dob": "1990-01-01",
+    "address": "456 Test St",
+    "role": "user"
+  }
+]

@@ -1,27 +1,23 @@
 import { Injectable } from '@angular/core';
-
-export interface Product {
-  name: string;
-  description: string;
-  price: number;
-  discount: number;
-  image: string;
-  category: string;
-}
+import { Product } from './product.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private products: Product[] = [
-    { name: 'Catan', description: 'Juego de estrategia donde los jugadores compiten por colonizar una isla.', price: 45, discount: 10, image: 'catan.jpg', category: 'strategy' },
-    { name: 'Risk', description: 'Juego de estrategia militar en el que los jugadores controlan ejércitos para conquistar el mundo.', price: 40, discount: 5, image: 'risk.jpg', category: 'strategy' },
-    // Agrega más productos aquí, asegurándote de incluir la propiedad `category`
-  ];
+  private products: Product[] = [];
 
-  private cart: Product[] = [];
+  constructor(private http: HttpClient) {
+    this.loadProducts();
+  }
 
-  constructor() { }
+  loadProducts() {
+    this.http.get<Product[]>('/assets/data/products.json').subscribe(data => {
+      this.products = data;
+    });
+  }
 
   getProducts(): Product[] {
     return this.products;
@@ -31,12 +27,7 @@ export class ProductService {
     return this.products.filter(product => product.category === category);
   }
 
-  addToCart(product: Product): void {
-    this.cart.push(product);
-    localStorage.setItem('cart', JSON.stringify(this.cart));
-  }
-
-  getCart(): Product[] {
-    return JSON.parse(localStorage.getItem('cart')) || [];
+  getProductById(id: number): Observable<Product | undefined> {
+    return of(this.products.find(product => product.id === id));
   }
 }

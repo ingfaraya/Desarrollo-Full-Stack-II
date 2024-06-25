@@ -1,0 +1,36 @@
+<!-- src/app/components/register/register.component.html -->
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h2>Registro</h2>
+        <form (ngSubmit)="register()">
+          <div class="mb-3">
+            <label for="fullName" class="form-label">Nombre Completo</label>
+            <input type="text" class="form-control" id="fullName" [(ngModel)]="fullName" name="fullName" required>
+          </div>
+          <div class="mb-3">
+            <label for="username" class="form-label">Nombre de Usuario</label>
+            <input type="text" class="form-control" id="username" [(ngModel)]="username" name="username" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password" required>
+          </div>
+          <div class="mb-3">
+            <label for="dob" class="form-label">Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="dob" [(ngModel)]="dob" name="dob" required>
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="address" [(ngModel)]="address" name="address" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Registrarse</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

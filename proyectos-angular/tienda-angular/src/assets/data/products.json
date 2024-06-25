@@ -1,0 +1,15 @@
+[
+    { "id": 1, "name": "Catan", "description": "Juego de estrategia donde los jugadores compiten por colonizar una isla.", "price": 45, "discount": 10, "category": "strategy", "image": "assets/images/catan.jpg" },
+    { "id": 2, "name": "Risk", "description": "Juego de estrategia militar en el que los jugadores controlan ejércitos para conquistar el mundo.", "price": 40, "discount": 5, "category": "strategy", "image": "assets/images/risk.jpg" },
+    { "id": 3, "name": "Pandemic", "description": "Juego cooperativo donde los jugadores trabajan juntos para detener pandemias.", "price": 35, "discount": 8, "category": "strategy", "image": "assets/images/pandemic.jpg" },
+    { "id": 4, "name": "Monopoly", "description": "Juego de bienes raíces donde los jugadores compran, venden y negocian propiedades.", "price": 30, "discount": 5, "category": "family", "image": "assets/images/monopoly.jpg" },
+    { "id": 5, "name": "Clue", "description": "Juego de misterio donde los jugadores deben descubrir al asesino, la habitación y el arma.", "price": 25, "discount": 3, "category": "family", "image": "assets/images/clue.jpg" },
+    { "id": 6, "name": "The Game of Life", "description": "Juego de simulación de vida donde los jugadores pasan por diferentes etapas de la vida.", "price": 28, "discount": 4, "category": "family", "image": "assets/images/life.jpg" },
+    { "id": 7, "name": "Codenames", "description": "Juego de palabras en el que los jugadores intentan adivinar las palabras correctas basadas en pistas.", "price": 20, "discount": 2, "category": "party", "image": "assets/images/codenames.jpg" },
+    { "id": 8, "name": "Dixit", "description": "Juego de cartas en el que los jugadores usan ilustraciones para contar historias y adivinar las cartas de los demás.", "price": 30, "discount": 6, "category": "party", "image": "assets/images/dixit.jpg" },
+    { "id": 9, "name": "Charades", "description": "Juego de mímica en el que los jugadores intentan adivinar palabras o frases sin hablar.", "price": 15, "discount": 1, "category": "party", "image": "assets/images/charades.jpg" },
+    { "id": 10, "name": "Candy Land", "description": "Juego para niños en el que los jugadores recorren un camino lleno de dulces.", "price": 18, "discount": 2, "category": "kids", "image": "assets/images/candyland.jpg" },
+    { "id": 11, "name": "Mouse Trap", "description": "Juego en el que los jugadores construyen una trampa para ratones y tratan de atraparlos.", "price": 22, "discount": 3, "category": "kids", "image": "assets/images/mousetrap.jpg" },
+    { "id": 12, "name": "Guess Who?", "description": "Juego de adivinanzas en el que los jugadores intentan identificar al personaje misterioso del oponente.", "price": 20, "discount": 2, "category": "kids", "image": "assets/images/guesswho.jpg" }
+  ]
+  
