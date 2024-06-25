@@ -10,7 +10,7 @@ import { CartService } from '../../services/cart.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './product-item.component.html',
-  styleUrls: ['./product-item.component.scss']
+  styleUrls: ['./product-item.component.css']
 })
 export class ProductItemComponent {
   @Input() product!: Product;

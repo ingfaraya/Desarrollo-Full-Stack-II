@@ -13,7 +13,7 @@ import { ProductItemComponent } from '../product-item/product-item.component';
   standalone: true,
   imports: [CommonModule, RouterModule, ProductItemComponent],
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
   products$: Observable<Product[]>;

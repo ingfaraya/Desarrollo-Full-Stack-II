@@ -11,7 +11,7 @@ import { Product } from '../../models/product.model';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
   cartItems$: Observable<Product[]>;
