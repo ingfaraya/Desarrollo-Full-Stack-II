@@ -2,8 +2,18 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { Product } from '../../models/product.model';
 import { CartService } from '../../services/cart.service';
+
+// Definición directa de la interfaz Product
+interface Product {
+  category: string;
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  discount: number;
+  image: string;
+}
 
 @Component({
   selector: 'app-product-item',

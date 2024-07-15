@@ -2,8 +2,18 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
-import { Product } from '../models/product.model';
 import { AuthService } from './auth.service';
+
+// Definición directa de la interfaz Product
+interface Product {
+  category: string;
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  discount: number;
+  image: string;
+}
 
 @Injectable({
   providedIn: 'root'

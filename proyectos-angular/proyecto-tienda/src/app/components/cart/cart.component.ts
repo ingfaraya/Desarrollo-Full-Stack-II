@@ -1,10 +1,20 @@
 // src/app/components/cart/cart.component.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, ActivatedRoute, Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { Observable } from 'rxjs';
-import { Product } from '../../models/product.model';
+
+// Definición directa de la interfaz Product
+interface Product {
+  category: string;
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  discount: number;
+  image: string;
+}
 
 @Component({
   selector: 'app-cart',

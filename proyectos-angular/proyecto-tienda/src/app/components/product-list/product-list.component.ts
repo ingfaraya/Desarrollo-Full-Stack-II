@@ -5,8 +5,18 @@ import { RouterModule, ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/products.service';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { Product } from '../../models/product.model';
 import { ProductItemComponent } from '../product-item/product-item.component';
+
+// Definición directa de la interfaz Product
+interface Product {
+  category: string;
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  discount: number;
+  image: string;
+}
 
 @Component({
   selector: 'app-product-list',
